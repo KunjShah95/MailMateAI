@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MailMateAI - AI-Powered Email Management for Professionals</title>
+        <meta name="description" content="Transform your email workflow with MailMateAI. Smart categorization, AI responses, and priority management for busy professionals.">
+        <meta name="keywords" content="AI email, email management, productivity, email assistant, smart inbox">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css">
+        <script src="script.js" defer></script>
+        
+        <!-- Favicon -->
+        <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📧</text></svg>">
+    </head>
+    <body>
+        <!-- Header Navigation -->
+        <header class="header">
+            <nav class="nav">
+                <div class="nav-container">
+                    <div class="nav-brand">
+                        <span class="logo">📧</span>
+                        <span class="brand-name">MailMateAI</span>
+                    </div>
+                    <ul class="nav-menu">
+                        <li><a href="#features" class="nav-link">Features</a></li>
+                        <li><a href="#pricing" class="nav-link">Pricing</a></li>
+                        <li><a href="#testimonials" class="nav-link">Reviews</a></li>
+                        <li><a href="#faq" class="nav-link">FAQ</a></li>
+                        <li><a href="login.html" class="nav-link">Login</a></li>
+                        <li><a href="signup.html" class="btn btn-primary nav-cta">Start Free Trial</a></li>
+                    </ul>
+                    <button class="nav-toggle" aria-label="Toggle navigation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="container">
+                    <div class="hero-content">
+                        <div class="hero-badge">
+                            <span class="badge">🚀 New: AI-Powered Email Templates</span>
+                        </div>
+                        <h1 class="hero-title">
+                            Transform Your Email Workflow with 
+                            <span class="gradient-text">AI Intelligence</span>
+                        </h1>
+                        <p class="hero-description">
+                            MailMateAI uses advanced artificial intelligence to prioritize, categorize, and draft your emails automatically. Save 3+ hours daily and never miss important messages again.
+                        </p>
+                        <div class="hero-cta">
+                            <a href="signup.html" class="btn btn-primary btn-large">
+                                Start Free 14-Day Trial
+                                <span class="btn-icon">→</span>
+                            </a>
+                            <a href="#demo" class="btn btn-secondary btn-large">
+                                <span class="btn-icon">▶</span>
+                                Watch Demo
+                            </a>
+                        </div>
+                        <div class="hero-stats">
+                            <div class="stat">
+                                <div class="stat-number">50K+</div>
+                                <div class="stat-label">Active Users</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">3M+</div>
+                                <div class="stat-label">Emails Processed</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">4.9/5</div>
+                                <div class="stat-label">User Rating</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-visual">
+                        <div class="hero-image">
+                            <div class="dashboard-preview">
+                                <div class="dashboard-header">
+                                    <div class="dashboard-nav">
+                                        <div class="nav-item active">📥 Smart Inbox</div>
+                                        <div class="nav-item">⚡ Priority</div>
+                                        <div class="nav-item">📊 Analytics</div>
+                                    </div>
+                                </div>
+                                <div class="dashboard-content">
+                                    <div class="email-card high-priority">
+                                        <div class="email-meta">
+                                            <span class="priority-badge">High Priority</span>
+                                            <span class="time">2 min ago</span>
+                                        </div>
+                                        <div class="email-subject">Q4 Budget Review Meeting</div>
+                                        <div class="email-sender">Sarah Johnson • Finance Director</div>
+                                        <div class="ai-suggestion">
+                                            <span class="ai-icon">🤖</span>
+                                            AI suggests: Quick response needed
+                                        </div>
+                                    </div>
+                                    <div class="email-card medium-priority">
+                                        <div class="email-meta">
+                                            <span class="priority-badge">Medium</span>
+                                            <span class="time">15 min ago</span>
+                                        </div>
+                                        <div class="email-subject">Project Update Request</div>
+                                        <div class="email-sender">Mike Chen • Product Manager</div>
+                                    </div>
+                                    <div class="email-card low-priority">
+                                        <div class="email-meta">
+                                            <span class="priority-badge">Newsletter</span>
+                                            <span class="time">1 hour ago</span>
+                                        </div>
+                                        <div class="email-subject">Weekly Industry Insights</div>
+                                        <div class="email-sender">TechNews Daily</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section id="features" class="features-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">Powerful Features for Modern Professionals</h2>
+                        <p class="section-description">Everything you need to master your inbox and boost productivity</p>
+                    </div>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🧠</div>
+                            <h3 class="feature-title">Smart AI Categorization</h3>
+                            <p class="feature-description">Automatically sorts emails by importance, urgency, and context using advanced machine learning algorithms.</p>
+                            <ul class="feature-points">
+                                <li>99.2% accuracy rate</li>
+                                <li>Custom category creation</li>
+                                <li>Learning from your behavior</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">⚡</div>
+                            <h3 class="feature-title">Instant Response Suggestions</h3>
+                            <p class="feature-description">Generate contextually perfect email responses in seconds with our AI writing assistant.</p>
+                            <ul class="feature-points">
+                                <li>Tone adaptation</li>
+                                <li>Multi-language support</li>
+                                <li>Professional templates</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🎯</div>
+                            <h3 class="feature-title">Priority Intelligence</h3>
+                            <p class="feature-description">Never miss critical emails again with smart priority scoring and intelligent notifications.</p>
+                            <ul class="feature-points">
+                                <li>VIP sender detection</li>
+                                <li>Deadline awareness</li>
+                                <li>Smart notification timing</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔗</div>
+                            <h3 class="feature-title">Universal Integration</h3>
+                            <p class="feature-description">Works seamlessly with Gmail, Outlook, Apple Mail, and all major email platforms.</p>
+                            <ul class="feature-points">
+                                <li>One-click setup</li>
+                                <li>Real-time synchronization</li>
+                                <li>Cloud-based processing</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📊</div>
+                            <h3 class="feature-title">Advanced Analytics</h3>
+                            <p class="feature-description">Track productivity metrics, response times, and email patterns with detailed insights.</p>
+                            <ul class="feature-points">
+                                <li>Productivity reports</li>
+                                <li>Response time tracking</li>
+                                <li>Team collaboration metrics</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔒</div>
+                            <h3 class="feature-title">Enterprise Security</h3>
+                            <p class="feature-description">Bank-level encryption and privacy protection with GDPR compliance.</p>
+                            <ul class="feature-points">
+                                <li>End-to-end encryption</li>
+                                <li>Zero data retention</li>
+                                <li>SOC 2 Type II certified</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Social Proof Section -->
+            <section class="social-proof">
+                <div class="container">
+                    <div class="social-proof-content">
+                        <p class="social-proof-text">Trusted by professionals at</p>
+                        <div class="company-logos">
+                            <div class="company-logo">Google</div>
+                            <div class="company-logo">Microsoft</div>
+                            <div class="company-logo">Amazon</div>
+                            <div class="company-logo">Salesforce</div>
+                            <div class="company-logo">Meta</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials Section -->
+            <section id="testimonials" class="testimonials-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">Loved by 50,000+ Professionals</h2>
+                        <p class="section-description">See how MailMateAI is transforming email workflows worldwide</p>
+                    </div>
+                    <div class="testimonials-grid">
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <div class="stars">★★★★★</div>
+                                <p class="testimonial-text">"MailMateAI has completely transformed how I handle emails. The AI suggestions are incredibly accurate and I save 3+ hours every day. It's like having a personal assistant."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">JD</div>
+                                <div class="author-info">
+                                    <div class="author-name">Jane Davidson</div>
+                                    <div class="author-title">VP of Marketing • TechCorp</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <div class="stars">★★★★★</div>
+                                <p class="testimonial-text">"The priority intelligence feature is a game-changer. I never miss important emails anymore, and the AI responses are so natural that clients think I wrote them myself."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">MS</div>
+                                <div class="author-info">
+                                    <div class="author-name">Marcus Smith</div>
+                                    <div class="author-title">Senior Consultant • GlobalAdvisory</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <div class="stars">★★★★★</div>
+                                <p class="testimonial-text">"As a busy entrepreneur, MailMateAI is essential. The smart categorization keeps me organized and the analytics help me understand my communication patterns."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">LW</div>
+                                <div class="author-info">
+                                    <div class="author-name">Lisa Wang</div>
+                                    <div class="author-title">Founder • StartupVenture</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pricing Section -->
+            <section id="pricing" class="pricing-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">Simple, Transparent Pricing</h2>
+                        <p class="section-description">Choose the perfect plan for your email workflow needs</p>
+                    </div>
+                    <div class="pricing-grid">
+                        <div class="pricing-card">
+                            <div class="pricing-header">
+                                <h3 class="plan-name">Starter</h3>
+                                <div class="plan-price">
+                                    <span class="currency">$</span>
+                                    <span class="amount">9</span>
+                                    <span class="period">/month</span>
+                                </div>
+                                <p class="plan-description">Perfect for individuals getting started</p>
+                            </div>
+                            <div class="pricing-features">
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Up to 1,000 emails/month</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Smart categorization</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Basic AI responses</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>1 email account</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Email support</span>
+                                </div>
+                            </div>
+                            <a href="signup.html" class="btn btn-outline btn-full">Start Free Trial</a>
+                        </div>
+                        
+                        <div class="pricing-card featured">
+                            <div class="popular-badge">Most Popular</div>
+                            <div class="pricing-header">
+                                <h3 class="plan-name">Professional</h3>
+                                <div class="plan-price">
+                                    <span class="currency">$</span>
+                                    <span class="amount">29</span>
+                                    <span class="period">/month</span>
+                                </div>
+                                <p class="plan-description">For professionals and growing teams</p>
+                            </div>
+                            <div class="pricing-features">
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Up to 10,000 emails/month</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Advanced AI features</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Priority intelligence</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>3 email accounts</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Analytics dashboard</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Priority support</span>
+                                </div>
+                            </div>
+                            <a href="signup.html" class="btn btn-primary btn-full">Start Free Trial</a>
+                        </div>
+                        
+                        <div class="pricing-card">
+                            <div class="pricing-header">
+                                <h3 class="plan-name">Enterprise</h3>
+                                <div class="plan-price">
+                                    <span class="currency">$</span>
+                                    <span class="amount">99</span>
+                                    <span class="period">/month</span>
+                                </div>
+                                <p class="plan-description">For large teams and organizations</p>
+                            </div>
+                            <div class="pricing-features">
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Unlimited emails</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Custom AI training</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Team collaboration</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Unlimited accounts</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>Advanced security</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">✓</span>
+                                    <span>24/7 phone support</span>
+                                </div>
+                            </div>
+                            <a href="contact.html" class="btn btn-outline btn-full">Contact Sales</a>
+                        </div>
+                    </div>
+                    <div class="pricing-guarantee">
+                        <div class="guarantee-icon">🛡️</div>
+                        <div class="guarantee-text">
+                            <strong>30-day money-back guarantee</strong>
+                            <span>Try MailMateAI risk-free. Not satisfied? Get a full refund.</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section id="faq" class="faq-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title">Frequently Asked Questions</h2>
+                        <p class="section-description">Everything you need to know about MailMateAI</p>
+                    </div>
+                    <div class="faq-grid">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>How does MailMateAI's AI actually work?</h3>
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>MailMateAI uses advanced natural language processing and machine learning algorithms to analyze email content, sender patterns, and your interaction history. It learns from your behavior to improve categorization and response suggestions over time.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>Is my email data secure and private?</h3>
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Absolutely. We use bank-level encryption (AES-256) and process data in secure, SOC 2 Type II certified environments. Your emails are never stored permanently, and we're fully GDPR compliant with zero data retention policies.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>Which email providers does MailMateAI support?</h3>
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>MailMateAI works with all major email providers including Gmail, Outlook, Apple Mail, Yahoo Mail, and any IMAP-enabled email service. Setup takes less than 2 minutes with our one-click integration.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>Can I customize the AI suggestions?</h3>
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Yes! You can train the AI to match your communication style, set custom priorities, create personalized categories, and adjust the tone for different types of recipients. The AI gets smarter as you use it.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>What's included in the free trial?</h3>
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>The 14-day free trial includes full access to all Professional plan features: unlimited AI categorization, response suggestions, priority intelligence, analytics, and priority support. No credit card required.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3>How quickly will I see results?</h3>
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Most users see immediate improvements in email organization. The AI becomes more accurate within 3-5 days of use, and users typically report saving 2-3 hours daily within the first week.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="cta-section">
+                <div class="container">
+                    <div class="cta-content">
+                        <h2 class="cta-title">Ready to Transform Your Email Workflow?</h2>
+                        <p class="cta-description">
+                            Join 50,000+ professionals who've already reclaimed their time with MailMateAI. 
+                            Start your free trial today and experience the future of email management.
+                        </p>
+                        <div class="cta-buttons">
+                            <a href="signup.html" class="btn btn-primary btn-large">
+                                Start Your Free Trial
+                                <span class="btn-icon">→</span>
+                            </a>
+                            <div class="cta-note">
+                                <span class="cta-check">✓</span>
+                                14-day free trial • No credit card required • Cancel anytime
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <div class="footer-brand">
+                            <span class="logo">📧</span>
+                            <span class="brand-name">MailMateAI</span>
+                        </div>
+                        <p class="footer-description">
+                            Transform your email workflow with AI-powered intelligence. 
+                            Save time, stay organized, never miss important messages.
+                        </p>
+                        <div class="social-links">
+                            <a href="https://twitter.com/MailMateAI" class="social-link" aria-label="Twitter">𝕏</a>
+                            <a href="https://linkedin.com/company/MailMateAI" class="social-link" aria-label="LinkedIn">in</a>
+                            <a href="https://facebook.com/MailMateAI" class="social-link" aria-label="Facebook">f</a>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h4 class="footer-title">Product</h4>
+                        <ul class="footer-links">
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="#pricing">Pricing</a></li>
+                            <li><a href="integrations.html">Integrations</a></li>
+                            <li><a href="security.html">Security</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4 class="footer-title">Company</h4>
+                        <ul class="footer-links">
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="careers.html">Careers</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4 class="footer-title">Support</h4>
+                        <ul class="footer-links">
+                            <li><a href="help.html">Help Center</a></li>
+                            <li><a href="documentation.html">Documentation</a></li>
+                            <li><a href="status.html">System Status</a></li>
+                            <li><a href="mailto:support@mailmateai.com">Contact Support</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="footer-legal">
+                        <span>&copy; 2025 MailMateAI. All rights reserved.</span>
+                        <div class="legal-links">
+                            <a href="privacy.html">Privacy Policy</a>
+                            <a href="terms.html">Terms of Service</a>
+                            <a href="cookies.html">Cookie Policy</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            // Simple FAQ toggle functionality
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.addEventListener('click', () => {
+                    const faqItem = question.parentElement;
+                    const isActive = faqItem.classList.contains('active');
+                    
+                    // Close all FAQ items
+                    document.querySelectorAll('.faq-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    // Open clicked item if it wasn't active
+                    if (!isActive) {
+                        faqItem.classList.add('active');
+                    }
+                });
+            });
+
+            // Mobile navigation toggle
+            document.querySelector('.nav-toggle').addEventListener('click', () => {
+                document.querySelector('.nav-menu').classList.toggle('active');
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - MailMate AI</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .gradient-text { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+        .dark .gradient-bg { background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); }
+        .popular-badge { animation: pulse 2s infinite; }
+    </style>
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            500: '#667eea',
+                            600: '#5a67d8',
+                            700: '#4c51bf',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-md z-50 border-b border-gray-200 dark:border-gray-700">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-envelope text-white text-sm"></i>
+                    </div>
+                    <a href="index.html" class="text-xl font-bold gradient-text">MailMate AI</a>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html#how-it-works" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 transition-colors">How it Works</a>
+                    <a href="index.html#use-cases" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 transition-colors">Use Cases</a>
+                    <a href="#pricing" class="text-primary-600 dark:text-primary-400 font-medium">Pricing</a>
+                    <a href="generator.html" class="bg-primary-500 text-white px-6 py-2 rounded-full hover:bg-primary-600 transition-colors">Try Free</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <!-- Dark Mode Toggle -->
+                    <button id="theme-toggle" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="md:hidden w-10 h-10 rounded-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">
+                Simple, <span class="gradient-text">Student-Friendly</span> Pricing
+            </h1>
+            <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+                Start free and upgrade when you're ready. Perfect for students and young professionals.
+            </p>
+            
+            <!-- Billing Toggle -->
+            <div class="flex items-center justify-center mb-12">
+                <span class="text-gray-600 dark:text-gray-300 mr-3">Monthly</span>
+                <button id="billing-toggle" class="relative inline-flex h-6 w-11 items-center rounded-full bg-gray-300 dark:bg-gray-600 transition-colors">
+                    <span class="inline-block h-4 w-4 transform rounded-full bg-white transition-transform translate-x-1"></span>
+                </button>
+                <span class="text-gray-600 dark:text-gray-300 ml-3">Yearly</span>
+                <span class="ml-2 px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs rounded-full font-medium">Save 20%</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Cards -->
+    <section id="pricing" class="py-20 bg-white dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="max-w-5xl mx-auto">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Free Plan -->
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl border-2 border-gray-200 dark:border-gray-700 p-8 card-hover">
+                        <div class="text-center mb-8">
+                            <h3 class="text-2xl font-bold mb-4">Free</h3>
+                            <div class="text-5xl font-bold mb-2">₹0</div>
+                            <p class="text-gray-500 dark:text-gray-400">Perfect to get started</p>
+                        </div>
+                        
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>5 emails per day</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Basic email templates</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Standard tone options</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Email type selection</span>
+                            </li>
+                            <li class="flex items-center text-gray-400">
+                                <i class="fas fa-times text-red-500 mr-3"></i>
+                                <span>Advanced AI features</span>
+                            </li>
+                            <li class="flex items-center text-gray-400">
+                                <i class="fas fa-times text-red-500 mr-3"></i>
+                                <span>Priority support</span>
+                            </li>
+                        </ul>
+                        
+                        <a href="generator.html" class="w-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 py-3 rounded-xl font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors text-center block">
+                            Get Started Free
+                        </a>
+                    </div>
+                    
+                    <!-- Student Plan - Popular -->
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl border-2 border-primary-500 p-8 card-hover relative transform scale-105">
+                        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-primary-500 text-white px-6 py-2 rounded-full text-sm font-medium popular-badge">
+                            Most Popular
+                        </div>
+                        
+                        <div class="text-center mb-8">
+                            <h3 class="text-2xl font-bold mb-4">Student</h3>
+                            <div class="text-5xl font-bold mb-2">
+                                <span class="monthly-price">₹199</span>
+                                <span class="yearly-price hidden">₹159</span>
+                            </div>
+                            <p class="text-gray-500 dark:text-gray-400">
+                                <span class="monthly-text">per month</span>
+                                <span class="yearly-text hidden">per month, billed yearly</span>
+                            </p>
+                        </div>
+                        
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span><strong>Unlimited</strong> emails</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>All tone controls & styles</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Priority AI processing</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Advanced email templates</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Multiple LLM fallbacks</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Email history & drafts</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Email support</span>
+                            </li>
+                        </ul>
+                        
+                        <a href="#" class="w-full bg-primary-500 text-white py-3 rounded-xl font-semibold hover:bg-primary-600 transition-colors text-center block">
+                            Choose Student Plan
+                        </a>
+                    </div>
+                    
+                    <!-- Pro Plan -->
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl border-2 border-gray-200 dark:border-gray-700 p-8 card-hover">
+                        <div class="text-center mb-8">
+                            <h3 class="text-2xl font-bold mb-4">Pro</h3>
+                            <div class="text-5xl font-bold mb-2">
+                                <span class="monthly-price">₹399</span>
+                                <span class="yearly-price hidden">₹319</span>
+                            </div>
+                            <p class="text-gray-500 dark:text-gray-400">
+                                <span class="monthly-text">per month</span>
+                                <span class="yearly-text hidden">per month, billed yearly</span>
+                            </p>
+                        </div>
+                        
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span><strong>Everything</strong> in Student</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Email scheduling</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Advanced templates library</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Custom AI training</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>API access</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Analytics & insights</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Priority support</span>
+                            </li>
+                        </ul>
+                        
+                        <a href="#" class="w-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 py-3 rounded-xl font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors text-center block">
+                            Choose Pro Plan
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Comparison -->
+    <section class="py-20 bg-gray-50 dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Compare All Features</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300">See what's included in each plan</p>
+            </div>
+            
+            <div class="max-w-5xl mx-auto">
+                <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gray-50 dark:bg-gray-800">
+                                <tr>
+                                    <th class="text-left py-4 px-6 font-semibold">Features</th>
+                                    <th class="text-center py-4 px-6 font-semibold">Free</th>
+                                    <th class="text-center py-4 px-6 font-semibold bg-primary-50 dark:bg-primary-900/20">Student</th>
+                                    <th class="text-center py-4 px-6 font-semibold">Pro</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                                <tr>
+                                    <td class="py-4 px-6 font-medium">Daily Email Limit</td>
+                                    <td class="text-center py-4 px-6">5 emails</td>
+                                    <td class="text-center py-4 px-6 bg-primary-50 dark:bg-primary-900/20">Unlimited</td>
+                                    <td class="text-center py-4 px-6">Unlimited</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-6 font-medium">Email Templates</td>
+                                    <td class="text-center py-4 px-6"><i class="fas fa-check text-green-500"></i></td>
+                                    <td class="text-center py-4 px-6 bg-primary-50 dark:bg-primary-900/20"><i class="fas fa-check text-green-500"></i></td>
+                                    <td class="text-center py-4 px-6"><i class="fas fa-check text-green-500"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-6 font-medium">Tone Controls</td>
+                                    <td class="text-center py-4 px-6">Basic</td>
+                                    <td class="text-center py-4 px-6 bg-primary-50 dark:bg-primary-900/20">Advanced</td>
+                                    <td class="text-center py-4 px-6">Advanced</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-6 font-medium">AI Models</td>
+                                    <td class="text-center py-4 px-6">GPT-3.5</td>
+                                    <td class="text-center py-4 px-6 bg-primary-50 dark:bg-primary-900/20">All Models</td>
+                                    <td class="text-center py-4 px-6">All Models</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-6 font-medium">Email History</td>
+                                    <td class="text-center py-4 px-6"><i class="fas fa-times text-red-500"></i></td>
+                                    <td class="text-center py-4 px-6 bg-primary-50 dark:bg-primary-900/20"><i class="fas fa-check text-green-500"></i></td>
+                                    <td class="text-center py-4 px-6"><i class="fas fa-check text-green-500"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-6 font-medium">Email Scheduling</td>
+                                    <td class="text-center py-4 px-6"><i class="fas fa-times text-red-500"></i></td>
+                                    <td class="text-center py-4 px-6 bg-primary-50 dark:bg-primary-900/20"><i class="fas fa-times text-red-500"></i></td>
+                                    <td class="text-center py-4 px-6"><i class="fas fa-check text-green-500"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-6 font-medium">API Access</td>
+                                    <td class="text-center py-4 px-6"><i class="fas fa-times text-red-500"></i></td>
+                                    <td class="text-center py-4 px-6 bg-primary-50 dark:bg-primary-900/20"><i class="fas fa-times text-red-500"></i></td>
+                                    <td class="text-center py-4 px-6"><i class="fas fa-check text-green-500"></i></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-6 font-medium">Support</td>
+                                    <td class="text-center py-4 px-6">Community</td>
+                                    <td class="text-center py-4 px-6 bg-primary-50 dark:bg-primary-900/20">Email</td>
+                                    <td class="text-center py-4 px-6">Priority</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 bg-white dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Pricing FAQ</h2>
+            </div>
+            
+            <div class="max-w-3xl mx-auto">
+                <div class="space-y-6">
+                    <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6">
+                        <h3 class="font-semibold mb-2">Can I switch plans anytime?</h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Yes! You can upgrade or downgrade your plan at any time. Changes will be reflected in your next billing cycle.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6">
+                        <h3 class="font-semibold mb-2">Do you offer student discounts?</h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Our Student plan is already designed specifically for students with affordable pricing. We also offer additional discounts for educational institutions.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6">
+                        <h3 class="font-semibold mb-2">What payment methods do you accept?</h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            We accept all major credit cards, debit cards, UPI, and digital wallets. All payments are processed securely.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6">
+                        <h3 class="font-semibold mb-2">Is there a money-back guarantee?</h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Yes! We offer a 30-day money-back guarantee. If you're not satisfied, we'll refund your payment, no questions asked.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 gradient-bg">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+                Ready to Transform Your Email Game?
+            </h2>
+            <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+                Join thousands of students who are writing better emails and landing more opportunities
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="generator.html" class="bg-white text-primary-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transform hover:scale-105 transition-all duration-200 shadow-lg">
+                    Start Free Trial
+                </a>
+                <a href="#pricing" class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-primary-600 transition-all duration-200">
+                    View All Plans
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 dark:bg-black text-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-envelope text-white text-sm"></i>
+                        </div>
+                        <span class="text-xl font-bold">MailMate AI</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        AI-powered email writing assistant for students and young professionals.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">Product</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="generator.html" class="hover:text-white transition-colors">Email Generator</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Templates</a></li>
+                        <li><a href="#pricing" class="hover:text-white transition-colors">Pricing</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">Support</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">Legal</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 MailMate AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+        });
+
+        // Load saved theme
+        if (localStorage.getItem('theme') === 'dark') {
+            html.classList.add('dark');
+        }
+
+        // Billing toggle
+        const billingToggle = document.getElementById('billing-toggle');
+        const monthlyPrices = document.querySelectorAll('.monthly-price');
+        const yearlyPrices = document.querySelectorAll('.yearly-price');
+        const monthlyTexts = document.querySelectorAll('.monthly-text');
+        const yearlyTexts = document.querySelectorAll('.yearly-text');
+
+        billingToggle.addEventListener('click', () => {
+            const isYearly = billingToggle.classList.contains('yearly');
+            
+            billingToggle.classList.toggle('yearly');
+            billingToggle.querySelector('span').classList.toggle('translate-x-6');
+            
+            if (isYearly) {
+                // Switch to monthly
+                monthlyPrices.forEach(el => el.classList.remove('hidden'));
+                yearlyPrices.forEach(el => el.classList.add('hidden'));
+                monthlyTexts.forEach(el => el.classList.remove('hidden'));
+                yearlyTexts.forEach(el => el.classList.add('hidden'));
+            } else {
+                // Switch to yearly
+                monthlyPrices.forEach(el => el.classList.add('hidden'));
+                yearlyPrices.forEach(el => el.classList.remove('hidden'));
+                monthlyTexts.forEach(el => el.classList.add('hidden'));
+                yearlyTexts.forEach(el => el.classList.remove('hidden'));
+            }
+        });
+    </script>
+</body>
+</html>

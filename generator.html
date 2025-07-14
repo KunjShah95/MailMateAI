@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Generator - MailMate AI</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .gradient-text { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 5px 10px -5px rgba(0, 0, 0, 0.04); }
+        .dark .gradient-bg { background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); }
+        .generate-btn { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .generate-btn:hover { background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%); }
+        .spinner { animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .pulse-animation { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    </style>
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            500: '#667eea',
+                            600: '#5a67d8',
+                            700: '#4c51bf',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-envelope text-white text-sm"></i>
+                    </div>
+                    <a href="index.html" class="text-xl font-bold gradient-text">MailMate AI</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <!-- Usage Counter -->
+                    <div class="hidden sm:flex items-center space-x-2 bg-gray-100 dark:bg-gray-700 px-3 py-2 rounded-full">
+                        <i class="fas fa-envelope text-primary-500 text-sm"></i>
+                        <span class="text-sm font-medium">
+                            <span id="usage-count">5</span> emails left today
+                        </span>
+                    </div>
+                    
+                    <!-- Dark Mode Toggle -->
+                    <button id="theme-toggle" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                    
+                    <!-- Upgrade Button -->
+                    <a href="login.html" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 transition-colors text-sm font-medium mr-2">
+                        Sign In
+                    </a>
+                    <a href="index.html#pricing" class="bg-primary-500 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-primary-600 transition-colors">
+                        Upgrade
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-7xl mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-8">
+                <h1 class="text-3xl md:text-4xl font-bold mb-4">
+                    <i class="fas fa-magic gradient-text mr-2"></i>
+                    AI Email Generator
+                </h1>
+                <p class="text-gray-600 dark:text-gray-300 text-lg">
+                    Describe what you need, and we'll craft the perfect professional email
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Input Section -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
+                        <form id="email-form" class="space-y-6">
+                            <!-- Email Type -->
+                            <div>
+                                <label class="block text-sm font-semibold mb-3 text-gray-700 dark:text-gray-300">
+                                    <i class="fas fa-envelope mr-2 text-primary-500"></i>
+                                    Email Type
+                                </label>
+                                <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                                    <label class="relative">
+                                        <input type="radio" name="emailType" value="internship" class="sr-only peer" checked>
+                                        <div class="bg-gray-50 dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 rounded-xl p-4 cursor-pointer hover:border-primary-300 peer-checked:border-primary-500 peer-checked:bg-primary-100 dark:peer-checked:bg-primary-900/30 transition-all">
+                                            <i class="fas fa-briefcase text-primary-500 mb-2 block"></i>
+                                            <span class="text-sm font-medium">Internship</span>
+                                        </div>
+                                    </label>
+                                    
+                                    <label class="relative">
+                                        <input type="radio" name="emailType" value="professor" class="sr-only peer">
+                                        <div class="bg-gray-50 dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 rounded-xl p-4 cursor-pointer hover:border-primary-300 peer-checked:border-primary-500 peer-checked:bg-primary-100 dark:peer-checked:bg-primary-900/30 transition-all">
+                                            <i class="fas fa-graduation-cap text-primary-500 mb-2 block"></i>
+                                            <span class="text-sm font-medium">Professor</span>
+                                        </div>
+                                    </label>
+                                    
+                                    <label class="relative">
+                                        <input type="radio" name="emailType" value="job" class="sr-only peer">
+                                        <div class="bg-gray-50 dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 rounded-xl p-4 cursor-pointer hover:border-primary-300 peer-checked:border-primary-500 peer-checked:bg-primary-100 dark:peer-checked:bg-primary-900/30 transition-all">
+                                            <i class="fas fa-user-tie text-primary-500 mb-2 block"></i>
+                                            <span class="text-sm font-medium">Job</span>
+                                        </div>
+                                    </label>
+                                    
+                                    <label class="relative">
+                                        <input type="radio" name="emailType" value="scholarship" class="sr-only peer">
+                                        <div class="bg-gray-50 dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 rounded-xl p-4 cursor-pointer hover:border-primary-300 peer-checked:border-primary-500 peer-checked:bg-primary-100 dark:peer-checked:bg-primary-900/30 transition-all">
+                                            <i class="fas fa-award text-primary-500 mb-2 block"></i>
+                                            <span class="text-sm font-medium">Scholarship</span>
+                                        </div>
+                                    </label>
+                                    
+                                    <label class="relative">
+                                        <input type="radio" name="emailType" value="follow-up" class="sr-only peer">
+                                        <div class="bg-gray-50 dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 rounded-xl p-4 cursor-pointer hover:border-primary-300 peer-checked:border-primary-500 peer-checked:bg-primary-100 dark:peer-checked:bg-primary-900/30 transition-all">
+                                            <i class="fas fa-reply text-primary-500 mb-2 block"></i>
+                                            <span class="text-sm font-medium">Follow-up</span>
+                                        </div>
+                                    </label>
+                                    
+                                    <label class="relative">
+                                        <input type="radio" name="emailType" value="custom" class="sr-only peer">
+                                        <div class="bg-gray-50 dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 rounded-xl p-4 cursor-pointer hover:border-primary-300 peer-checked:border-primary-500 peer-checked:bg-primary-100 dark:peer-checked:bg-primary-900/30 transition-all">
+                                            <i class="fas fa-cog text-primary-500 mb-2 block"></i>
+                                            <span class="text-sm font-medium">Custom</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Recipient Details -->
+                            <div>
+                                <label for="recipient" class="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">
+                                    <i class="fas fa-user mr-2 text-primary-500"></i>
+                                    Recipient Details
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="recipient" 
+                                    name="recipient"
+                                    placeholder="e.g., Hiring Manager at Google, Professor Smith, Scholarship Committee"
+                                    class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-700 transition-all"
+                                    required
+                                >
+                            </div>
+
+                            <!-- Email Content -->
+                            <div>
+                                <label for="content" class="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">
+                                    <i class="fas fa-edit mr-2 text-primary-500"></i>
+                                    What do you want to say?
+                                </label>
+                                <textarea 
+                                    id="content" 
+                                    name="content"
+                                    rows="4"
+                                    placeholder="Describe your request, background, or what you want to communicate..."
+                                    class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-700 transition-all resize-none"
+                                    required
+                                ></textarea>
+                            </div>
+
+                            <!-- Tone Selection -->
+                            <div>
+                                <label class="block text-sm font-semibold mb-3 text-gray-700 dark:text-gray-300">
+                                    <i class="fas fa-palette mr-2 text-primary-500"></i>
+                                    Email Tone
+                                </label>
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                    <label class="relative">
+                                        <input type="radio" name="tone" value="professional" class="sr-only peer" checked>
+                                        <div class="bg-gray-50 dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 rounded-lg p-3 cursor-pointer hover:border-primary-300 peer-checked:border-primary-500 peer-checked:bg-primary-100 dark:peer-checked:bg-primary-900/30 transition-all text-center">
+                                            <span class="text-sm font-medium peer-checked:text-primary-700 dark:peer-checked:text-primary-300">Professional</span>
+                                        </div>
+                                    </label>
+                                    
+                                    <label class="relative">
+                                        <input type="radio" name="tone" value="friendly" class="sr-only peer">
+                                        <div class="bg-gray-50 dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 rounded-lg p-3 cursor-pointer hover:border-primary-300 peer-checked:border-primary-500 peer-checked:bg-primary-100 dark:peer-checked:bg-primary-900/30 transition-all text-center">
+                                            <span class="text-sm font-medium peer-checked:text-primary-700 dark:peer-checked:text-primary-300">Friendly</span>
+                                        </div>
+                                    </label>
+                                    
+                                    <label class="relative">
+                                        <input type="radio" name="tone" value="grateful" class="sr-only peer">
+                                        <div class="bg-gray-50 dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 rounded-lg p-3 cursor-pointer hover:border-primary-300 peer-checked:border-primary-500 peer-checked:bg-primary-100 dark:peer-checked:bg-primary-900/30 transition-all text-center">
+                                            <span class="text-sm font-medium peer-checked:text-primary-700 dark:peer-checked:text-primary-300">Grateful</span>
+                                        </div>
+                                    </label>
+                                    
+                                    <label class="relative">
+                                        <input type="radio" name="tone" value="assertive" class="sr-only peer">
+                                        <div class="bg-gray-50 dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 rounded-lg p-3 cursor-pointer hover:border-primary-300 peer-checked:border-primary-500 peer-checked:bg-primary-100 dark:peer-checked:bg-primary-900/30 transition-all text-center">
+                                            <span class="text-sm font-medium peer-checked:text-primary-700 dark:peer-checked:text-primary-300">Assertive</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Additional Context (Optional) -->
+                            <div>
+                                <label for="context" class="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">
+                                    <i class="fas fa-info-circle mr-2 text-primary-500"></i>
+                                    Additional Context <span class="text-gray-400 font-normal">(Optional)</span>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="context" 
+                                    name="context"
+                                    placeholder="e.g., Previous conversation, deadline, specific requirements"
+                                    class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-700 transition-all"
+                                >
+                            </div>
+
+                            <!-- Generate Button -->
+                            <button 
+                                type="submit" 
+                                id="generate-btn"
+                                class="w-full generate-btn text-white font-semibold py-4 px-6 rounded-xl hover:shadow-lg transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 flex items-center justify-center"
+                            >
+                                <span id="btn-text">
+                                    <i class="fas fa-magic mr-2"></i>
+                                    Generate Professional Email
+                                </span>
+                                <span id="btn-loading" class="hidden">
+                                    <i class="fas fa-spinner spinner mr-2"></i>
+                                    AI is crafting your email...
+                                </span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="space-y-6">
+                    <!-- Quick Examples -->
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
+                        <h3 class="font-semibold mb-4 flex items-center">
+                            <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
+                            Quick Examples
+                        </h3>
+                        <div class="space-y-3">
+                            <button class="example-btn w-full text-left p-3 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">
+                                <div class="font-medium text-sm">Internship Application</div>
+                                <div class="text-xs text-gray-500 dark:text-gray-400">Apply for summer internship at tech company</div>
+                            </button>
+                            
+                            <button class="example-btn w-full text-left p-3 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">
+                                <div class="font-medium text-sm">Professor Meeting</div>
+                                <div class="text-xs text-gray-500 dark:text-gray-400">Request meeting for research discussion</div>
+                            </button>
+                            
+                            <button class="example-btn w-full text-left p-3 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">
+                                <div class="font-medium text-sm">Interview Follow-up</div>
+                                <div class="text-xs text-gray-500 dark:text-gray-400">Thank you email after job interview</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Tips -->
+                    <div class="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-6 border border-blue-200 dark:border-blue-800">
+                        <h3 class="font-semibold mb-4 flex items-center text-blue-800 dark:text-blue-300">
+                            <i class="fas fa-rocket mr-2"></i>
+                            Pro Tips
+                        </h3>
+                        <ul class="space-y-2 text-sm text-blue-700 dark:text-blue-300">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mr-2 mt-0.5 text-xs"></i>
+                                Be specific about your background and goals
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mr-2 mt-0.5 text-xs"></i>
+                                Mention relevant skills or experiences
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mr-2 mt-0.5 text-xs"></i>
+                                Include deadlines or time-sensitive information
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
+                        <h3 class="font-semibold mb-4 flex items-center">
+                            <i class="fas fa-history text-gray-500 mr-2"></i>
+                            Recent Emails
+                        </h3>
+                        <div class="space-y-2 text-sm">
+                            <div class="p-2 bg-gray-50 dark:bg-gray-700 rounded">
+                                <div class="font-medium">Google Internship</div>
+                                <div class="text-xs text-gray-500">2 hours ago</div>
+                            </div>
+                            <div class="p-2 bg-gray-50 dark:bg-gray-700 rounded">
+                                <div class="font-medium">Professor Meeting</div>
+                                <div class="text-xs text-gray-500">Yesterday</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Generated Email Output -->
+            <div id="output-section" class="mt-8 hidden">
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-bold flex items-center">
+                            <i class="fas fa-envelope text-primary-500 mr-2"></i>
+                            Your Professional Email
+                        </h2>
+                        <div class="flex space-x-2">
+                            <button id="regenerate-btn" class="px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                                <i class="fas fa-redo mr-2"></i>Regenerate
+                            </button>
+                            <button id="copy-btn" class="px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors">
+                                <i class="fas fa-copy mr-2"></i>Copy Email
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Email Preview -->
+                    <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="text-sm text-gray-500 dark:text-gray-400">Subject:</label>
+                                <div id="email-subject" class="font-medium text-gray-900 dark:text-white"></div>
+                            </div>
+                            <div class="border-t dark:border-gray-600 pt-4">
+                                <label class="text-sm text-gray-500 dark:text-gray-400">Email Body:</label>
+                                <div id="email-body" class="mt-2 whitespace-pre-wrap text-gray-900 dark:text-white leading-relaxed"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Edit Option -->
+                    <div class="mt-4">
+                        <button id="edit-btn" class="text-primary-600 dark:text-primary-400 hover:text-primary-700 text-sm font-medium">
+                            <i class="fas fa-edit mr-1"></i>Edit email before copying
+                        </button>
+                    </div>
+
+                    <!-- Editable Version (Hidden by default) -->
+                    <div id="edit-section" class="mt-4 hidden">
+                        <textarea id="editable-email" class="w-full h-64 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-700 resize-none"></textarea>
+                        <div class="flex space-x-2 mt-4">
+                            <button id="save-edit-btn" class="px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors">
+                                <i class="fas fa-save mr-2"></i>Save Changes
+                            </button>
+                            <button id="cancel-edit-btn" class="px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 max-w-md mx-4 text-center">
+            <div class="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-check text-green-600 dark:text-green-400 text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Email Copied Successfully!</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-6">Your professional email has been copied to clipboard. Ready to send!</p>
+            <button id="close-modal" class="bg-primary-500 text-white px-6 py-2 rounded-lg hover:bg-primary-600 transition-colors">
+                Great!
+            </button>
+        </div>
+    </div>
+
+    <script src="js/generator.js"></script>
+</body>
+</html>

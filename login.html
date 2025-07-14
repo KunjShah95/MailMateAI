@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - MailMate AI</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .gradient-text { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .dark .gradient-bg { background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); }
+        .glass { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); }
+        .dark .glass { background: rgba(0, 0, 0, 0.1); border: 1px solid rgba(255, 255, 255, 0.1); }
+    </style>
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            500: '#667eea',
+                            600: '#5a67d8',
+                            700: '#4c51bf',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-envelope text-white text-sm"></i>
+                    </div>
+                    <a href="index.html" class="text-xl font-bold gradient-text">MailMate AI</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <!-- Dark Mode Toggle -->
+                    <button id="theme-toggle" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                    
+                    <a href="signup.html" class="text-primary-600 dark:text-primary-400 hover:text-primary-700 font-medium">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Section -->
+    <section class="py-20 min-h-screen flex items-center">
+        <div class="container mx-auto px-4">
+            <div class="max-w-md mx-auto">
+                <!-- Login Card -->
+                <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 p-8">
+                    <!-- Header -->
+                    <div class="text-center mb-8">
+                        <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-user text-white text-2xl"></i>
+                        </div>
+                        <h1 class="text-2xl font-bold mb-2">Welcome Back!</h1>
+                        <p class="text-gray-600 dark:text-gray-300">Sign in to your MailMate AI account</p>
+                    </div>
+
+                    <!-- Login Form -->
+                    <form id="login-form" class="space-y-6">
+                        <!-- Email -->
+                        <div>
+                            <label for="email" class="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">
+                                <i class="fas fa-envelope mr-2 text-primary-500"></i>
+                                Email Address
+                            </label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email"
+                                placeholder="Enter your email"
+                                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-700 transition-all"
+                                required
+                            >
+                        </div>
+
+                        <!-- Password -->
+                        <div>
+                            <label for="password" class="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">
+                                <i class="fas fa-lock mr-2 text-primary-500"></i>
+                                Password
+                            </label>
+                            <div class="relative">
+                                <input 
+                                    type="password" 
+                                    id="password" 
+                                    name="password"
+                                    placeholder="Enter your password"
+                                    class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-gray-700 transition-all pr-12"
+                                    required
+                                >
+                                <button type="button" id="toggle-password" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Remember Me & Forgot Password -->
+                        <div class="flex items-center justify-between">
+                            <label class="flex items-center">
+                                <input type="checkbox" class="rounded border-gray-300 text-primary-600 focus:ring-primary-500">
+                                <span class="ml-2 text-sm text-gray-600 dark:text-gray-300">Remember me</span>
+                            </label>
+                            <a href="#" class="text-sm text-primary-600 dark:text-primary-400 hover:text-primary-700">Forgot password?</a>
+                        </div>
+
+                        <!-- Login Button -->
+                        <button 
+                            type="submit" 
+                            id="login-btn"
+                            class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-3 px-6 rounded-xl hover:shadow-lg transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+                        >
+                            <span id="login-text">
+                                <i class="fas fa-sign-in-alt mr-2"></i>
+                                Sign In
+                            </span>
+                            <span id="login-loading" class="hidden">
+                                <i class="fas fa-spinner animate-spin mr-2"></i>
+                                Signing in...
+                            </span>
+                        </button>
+
+                        <!-- Divider -->
+                        <div class="relative">
+                            <div class="absolute inset-0 flex items-center">
+                                <div class="w-full border-t border-gray-300 dark:border-gray-600"></div>
+                            </div>
+                            <div class="relative flex justify-center text-sm">
+                                <span class="px-2 bg-white dark:bg-gray-800 text-gray-500">or continue with</span>
+                            </div>
+                        </div>
+
+                        <!-- Social Login -->
+                        <div class="grid grid-cols-2 gap-3">
+                            <button type="button" class="flex items-center justify-center px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                                <i class="fab fa-google text-red-500 mr-2"></i>
+                                Google
+                            </button>
+                            <button type="button" class="flex items-center justify-center px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                                <i class="fab fa-github dark:text-white mr-2"></i>
+                                GitHub
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Sign Up Link -->
+                    <div class="mt-8 text-center">
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Don't have an account? 
+                            <a href="signup.html" class="text-primary-600 dark:text-primary-400 hover:text-primary-700 font-medium">Sign up for free</a>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Student Benefits -->
+                <div class="mt-8 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl p-6 border border-blue-200 dark:border-blue-800">
+                    <h3 class="font-semibold text-blue-800 dark:text-blue-300 mb-2">
+                        <i class="fas fa-graduation-cap mr-2"></i>
+                        Student Benefits
+                    </h3>
+                    <ul class="text-sm text-blue-700 dark:text-blue-300 space-y-1">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Free tier with 5 emails daily</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Student discount on premium plans</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Templates for academic emails</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 max-w-md mx-4 text-center">
+            <div class="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-check text-green-600 dark:text-green-400 text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Welcome Back!</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-6">You have successfully signed in to your account.</p>
+            <button id="close-modal" class="bg-primary-500 text-white px-6 py-2 rounded-lg hover:bg-primary-600 transition-colors">
+                Continue to Dashboard
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Dark mode functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                html.classList.add('dark');
+            }
+        }
+
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            const isDark = html.classList.contains('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+
+        // Password toggle
+        const togglePassword = document.getElementById('toggle-password');
+        const passwordInput = document.getElementById('password');
+
+        togglePassword.addEventListener('click', () => {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            const icon = togglePassword.querySelector('i');
+            icon.classList.toggle('fa-eye');
+            icon.classList.toggle('fa-eye-slash');
+        });
+
+        // Form submission
+        const loginForm = document.getElementById('login-form');
+        const loginBtn = document.getElementById('login-btn');
+        const loginText = document.getElementById('login-text');
+        const loginLoading = document.getElementById('login-loading');
+        const successModal = document.getElementById('success-modal');
+        const closeModal = document.getElementById('close-modal');
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Show loading state
+            loginText.classList.add('hidden');
+            loginLoading.classList.remove('hidden');
+            loginBtn.disabled = true;
+            
+            // Simulate API call
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            // Reset button state
+            loginText.classList.remove('hidden');
+            loginLoading.classList.add('hidden');
+            loginBtn.disabled = false;
+            
+            // Show success modal
+            successModal.classList.remove('hidden');
+            successModal.classList.add('flex');
+        });
+
+        closeModal.addEventListener('click', () => {
+            successModal.classList.add('hidden');
+            successModal.classList.remove('flex');
+            // Redirect to generator
+            window.location.href = 'generator.html';
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', initTheme);
+    </script>
+</body>
+</html>

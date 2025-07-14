@@ -1,576 +1,533 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>MailMateAI - AI-Powered Email Management for Professionals</title>
-        <meta name="description" content="Transform your email workflow with MailMateAI. Smart categorization, AI responses, and priority management for busy professionals.">
-        <meta name="keywords" content="AI email, email management, productivity, email assistant, smart inbox">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="styles.css">
-        <script src="script.js" defer></script>
-        
-        <!-- Favicon -->
-        <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📧</text></svg>">
-    </head>
-    <body>
-        <!-- Header Navigation -->
-        <header class="header">
-            <nav class="nav">
-                <div class="nav-container">
-                    <div class="nav-brand">
-                        <span class="logo">📧</span>
-                        <span class="brand-name">MailMateAI</span>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MailMate AI - Write Professional Emails in Seconds</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .gradient-text { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .typing-animation { border-right: 2px solid #667eea; animation: blink 1s infinite; }
+        @keyframes blink { 0%, 50% { border-color: transparent; } 51%, 100% { border-color: #667eea; } }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+        .dark .gradient-bg { background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); }
+    </style>
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            500: '#667eea',
+                            600: '#5a67d8',
+                            700: '#4c51bf',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-md z-50 border-b border-gray-200 dark:border-gray-700">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-envelope text-white text-sm"></i>
                     </div>
-                    <ul class="nav-menu">
-                        <li><a href="#features" class="nav-link">Features</a></li>
-                        <li><a href="#pricing" class="nav-link">Pricing</a></li>
-                        <li><a href="#testimonials" class="nav-link">Reviews</a></li>
-                        <li><a href="#faq" class="nav-link">FAQ</a></li>
-                        <li><a href="login.html" class="nav-link">Login</a></li>
-                        <li><a href="signup.html" class="btn btn-primary nav-cta">Start Free Trial</a></li>
-                    </ul>
-                    <button class="nav-toggle" aria-label="Toggle navigation">
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                    <span class="text-xl font-bold gradient-text">MailMate AI</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#how-it-works" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 transition-colors">How it Works</a>
+                    <a href="#use-cases" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 transition-colors">Use Cases</a>
+                    <a href="#pricing" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 transition-colors">Pricing</a>
+                    <a href="login.html" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 transition-colors">Sign In</a>
+                    <a href="generator.html" class="bg-primary-500 text-white px-6 py-2 rounded-full hover:bg-primary-600 transition-colors">Try Free</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <!-- Dark Mode Toggle -->
+                    <button id="theme-toggle" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="md:hidden w-10 h-10 rounded-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
+                        <i class="fas fa-bars"></i>
                     </button>
                 </div>
-            </nav>
-        </header>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">                    <div class="flex flex-col space-y-4">
+                        <a href="#how-it-works" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 transition-colors">How it Works</a>
+                        <a href="#use-cases" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 transition-colors">Use Cases</a>
+                        <a href="#pricing" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 transition-colors">Pricing</a>
+                        <a href="login.html" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 transition-colors">Sign In</a>
+                        <a href="generator.html" class="bg-primary-500 text-white px-6 py-2 rounded-full hover:bg-primary-600 transition-colors text-center">Try Free</a>
+                    </div>
+            </div>
+        </div>
+    </nav>
 
-        <main>
-            <!-- Hero Section -->
-            <section class="hero">
-                <div class="container">
-                    <div class="hero-content">
-                        <div class="hero-badge">
-                            <span class="badge">🚀 New: AI-Powered Email Templates</span>
-                        </div>
-                        <h1 class="hero-title">
-                            Transform Your Email Workflow with 
-                            <span class="gradient-text">AI Intelligence</span>
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="text-center lg:text-left">
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                            Write <span class="gradient-text">Professional Emails</span> in Seconds
                         </h1>
-                        <p class="hero-description">
-                            MailMateAI uses advanced artificial intelligence to prioritize, categorize, and draft your emails automatically. Save 3+ hours daily and never miss important messages again.
+                        <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
+                            Internships. Professors. Jobs. Follow-ups. No anxiety, just perfect emails powered by AI.
                         </p>
-                        <div class="hero-cta">
-                            <a href="signup.html" class="btn btn-primary btn-large">
-                                Start Free 14-Day Trial
-                                <span class="btn-icon">→</span>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
+                            <a href="generator.html" class="bg-primary-500 text-white px-8 py-4 rounded-full font-semibold hover:bg-primary-600 transform hover:scale-105 transition-all duration-200 shadow-lg">
+                                <i class="fas fa-magic mr-2"></i>Try it Free
                             </a>
-                            <a href="#demo" class="btn btn-secondary btn-large">
-                                <span class="btn-icon">▶</span>
-                                Watch Demo
+                            <a href="#examples" class="border-2 border-primary-500 text-primary-600 dark:text-primary-400 px-8 py-4 rounded-full font-semibold hover:bg-primary-500 hover:text-white transition-all duration-200">
+                                <i class="fas fa-eye mr-2"></i>See Examples
                             </a>
-                        </div>
-                        <div class="hero-stats">
-                            <div class="stat">
-                                <div class="stat-number">50K+</div>
-                                <div class="stat-label">Active Users</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-number">3M+</div>
-                                <div class="stat-label">Emails Processed</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-number">4.9/5</div>
-                                <div class="stat-label">User Rating</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="hero-visual">
-                        <div class="hero-image">
-                            <div class="dashboard-preview">
-                                <div class="dashboard-header">
-                                    <div class="dashboard-nav">
-                                        <div class="nav-item active">📥 Smart Inbox</div>
-                                        <div class="nav-item">⚡ Priority</div>
-                                        <div class="nav-item">📊 Analytics</div>
-                                    </div>
-                                </div>
-                                <div class="dashboard-content">
-                                    <div class="email-card high-priority">
-                                        <div class="email-meta">
-                                            <span class="priority-badge">High Priority</span>
-                                            <span class="time">2 min ago</span>
-                                        </div>
-                                        <div class="email-subject">Q4 Budget Review Meeting</div>
-                                        <div class="email-sender">Sarah Johnson • Finance Director</div>
-                                        <div class="ai-suggestion">
-                                            <span class="ai-icon">🤖</span>
-                                            AI suggests: Quick response needed
-                                        </div>
-                                    </div>
-                                    <div class="email-card medium-priority">
-                                        <div class="email-meta">
-                                            <span class="priority-badge">Medium</span>
-                                            <span class="time">15 min ago</span>
-                                        </div>
-                                        <div class="email-subject">Project Update Request</div>
-                                        <div class="email-sender">Mike Chen • Product Manager</div>
-                                    </div>
-                                    <div class="email-card low-priority">
-                                        <div class="email-meta">
-                                            <span class="priority-badge">Newsletter</span>
-                                            <span class="time">1 hour ago</span>
-                                        </div>
-                                        <div class="email-subject">Weekly Industry Insights</div>
-                                        <div class="email-sender">TechNews Daily</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Features Section -->
-            <section id="features" class="features-section">
-                <div class="container">
-                    <div class="section-header">
-                        <h2 class="section-title">Powerful Features for Modern Professionals</h2>
-                        <p class="section-description">Everything you need to master your inbox and boost productivity</p>
-                    </div>
-                    <div class="features-grid">
-                        <div class="feature-card">
-                            <div class="feature-icon">🧠</div>
-                            <h3 class="feature-title">Smart AI Categorization</h3>
-                            <p class="feature-description">Automatically sorts emails by importance, urgency, and context using advanced machine learning algorithms.</p>
-                            <ul class="feature-points">
-                                <li>99.2% accuracy rate</li>
-                                <li>Custom category creation</li>
-                                <li>Learning from your behavior</li>
-                            </ul>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">⚡</div>
-                            <h3 class="feature-title">Instant Response Suggestions</h3>
-                            <p class="feature-description">Generate contextually perfect email responses in seconds with our AI writing assistant.</p>
-                            <ul class="feature-points">
-                                <li>Tone adaptation</li>
-                                <li>Multi-language support</li>
-                                <li>Professional templates</li>
-                            </ul>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">🎯</div>
-                            <h3 class="feature-title">Priority Intelligence</h3>
-                            <p class="feature-description">Never miss critical emails again with smart priority scoring and intelligent notifications.</p>
-                            <ul class="feature-points">
-                                <li>VIP sender detection</li>
-                                <li>Deadline awareness</li>
-                                <li>Smart notification timing</li>
-                            </ul>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">🔗</div>
-                            <h3 class="feature-title">Universal Integration</h3>
-                            <p class="feature-description">Works seamlessly with Gmail, Outlook, Apple Mail, and all major email platforms.</p>
-                            <ul class="feature-points">
-                                <li>One-click setup</li>
-                                <li>Real-time synchronization</li>
-                                <li>Cloud-based processing</li>
-                            </ul>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">📊</div>
-                            <h3 class="feature-title">Advanced Analytics</h3>
-                            <p class="feature-description">Track productivity metrics, response times, and email patterns with detailed insights.</p>
-                            <ul class="feature-points">
-                                <li>Productivity reports</li>
-                                <li>Response time tracking</li>
-                                <li>Team collaboration metrics</li>
-                            </ul>
-                        </div>
-                        <div class="feature-card">
-                            <div class="feature-icon">🔒</div>
-                            <h3 class="feature-title">Enterprise Security</h3>
-                            <p class="feature-description">Bank-level encryption and privacy protection with GDPR compliance.</p>
-                            <ul class="feature-points">
-                                <li>End-to-end encryption</li>
-                                <li>Zero data retention</li>
-                                <li>SOC 2 Type II certified</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Social Proof Section -->
-            <section class="social-proof">
-                <div class="container">
-                    <div class="social-proof-content">
-                        <p class="social-proof-text">Trusted by professionals at</p>
-                        <div class="company-logos">
-                            <div class="company-logo">Google</div>
-                            <div class="company-logo">Microsoft</div>
-                            <div class="company-logo">Amazon</div>
-                            <div class="company-logo">Salesforce</div>
-                            <div class="company-logo">Meta</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Testimonials Section -->
-            <section id="testimonials" class="testimonials-section">
-                <div class="container">
-                    <div class="section-header">
-                        <h2 class="section-title">Loved by 50,000+ Professionals</h2>
-                        <p class="section-description">See how MailMateAI is transforming email workflows worldwide</p>
-                    </div>
-                    <div class="testimonials-grid">
-                        <div class="testimonial-card">
-                            <div class="testimonial-content">
-                                <div class="stars">★★★★★</div>
-                                <p class="testimonial-text">"MailMateAI has completely transformed how I handle emails. The AI suggestions are incredibly accurate and I save 3+ hours every day. It's like having a personal assistant."</p>
-                            </div>
-                            <div class="testimonial-author">
-                                <div class="author-avatar">JD</div>
-                                <div class="author-info">
-                                    <div class="author-name">Jane Davidson</div>
-                                    <div class="author-title">VP of Marketing • TechCorp</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-card">
-                            <div class="testimonial-content">
-                                <div class="stars">★★★★★</div>
-                                <p class="testimonial-text">"The priority intelligence feature is a game-changer. I never miss important emails anymore, and the AI responses are so natural that clients think I wrote them myself."</p>
-                            </div>
-                            <div class="testimonial-author">
-                                <div class="author-avatar">MS</div>
-                                <div class="author-info">
-                                    <div class="author-name">Marcus Smith</div>
-                                    <div class="author-title">Senior Consultant • GlobalAdvisory</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-card">
-                            <div class="testimonial-content">
-                                <div class="stars">★★★★★</div>
-                                <p class="testimonial-text">"As a busy entrepreneur, MailMateAI is essential. The smart categorization keeps me organized and the analytics help me understand my communication patterns."</p>
-                            </div>
-                            <div class="testimonial-author">
-                                <div class="author-avatar">LW</div>
-                                <div class="author-info">
-                                    <div class="author-name">Lisa Wang</div>
-                                    <div class="author-title">Founder • StartupVenture</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Pricing Section -->
-            <section id="pricing" class="pricing-section">
-                <div class="container">
-                    <div class="section-header">
-                        <h2 class="section-title">Simple, Transparent Pricing</h2>
-                        <p class="section-description">Choose the perfect plan for your email workflow needs</p>
-                    </div>
-                    <div class="pricing-grid">
-                        <div class="pricing-card">
-                            <div class="pricing-header">
-                                <h3 class="plan-name">Starter</h3>
-                                <div class="plan-price">
-                                    <span class="currency">$</span>
-                                    <span class="amount">9</span>
-                                    <span class="period">/month</span>
-                                </div>
-                                <p class="plan-description">Perfect for individuals getting started</p>
-                            </div>
-                            <div class="pricing-features">
-                                <div class="feature-item">
-                                    <span class="feature-icon">✓</span>
-                                    <span>Up to 1,000 emails/month</span>
-                                </div>
-                                <div class="feature-item">
-                                    <span class="feature-icon">✓</span>
-                                    <span>Smart categorization</span>
-                                </div>
-                                <div class="feature-item">
-                                    <span class="feature-icon">✓</span>
-                                    <span>Basic AI responses</span>
-                                </div>
-                                <div class="feature-item">
-                                    <span class="feature-icon">✓</span>
-                                    <span>1 email account</span>
-                                </div>
-                                <div class="feature-item">
-                                    <span class="feature-icon">✓</span>
-                                    <span>Email support</span>
-                                </div>
-                            </div>
-                            <a href="signup.html" class="btn btn-outline btn-full">Start Free Trial</a>
                         </div>
                         
-                        <div class="pricing-card featured">
-                            <div class="popular-badge">Most Popular</div>
-                            <div class="pricing-header">
-                                <h3 class="plan-name">Professional</h3>
-                                <div class="plan-price">
-                                    <span class="currency">$</span>
-                                    <span class="amount">29</span>
-                                    <span class="period">/month</span>
-                                </div>
-                                <p class="plan-description">For professionals and growing teams</p>
+                        <div class="flex items-center justify-center lg:justify-start space-x-6 text-sm text-gray-500 dark:text-gray-400">
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                No Credit Card
                             </div>
-                            <div class="pricing-features">
-                                <div class="feature-item">
-                                    <span class="feature-icon">✓</span>
-                                    <span>Up to 10,000 emails/month</span>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                5 Free Emails Daily
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                AI-Powered
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="relative">
+                        <!-- Email Preview Demo -->
+                        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-6 border border-gray-200 dark:border-gray-700">
+                            <div class="flex items-center space-x-3 mb-4">
+                                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                <span class="text-sm text-gray-500 ml-4">Email Compose</span>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="text-sm text-gray-500 dark:text-gray-400">To:</label>
+                                    <div class="text-sm font-medium">recruiter@techcorp.com</div>
                                 </div>
-                                <div class="feature-item">
-                                    <span class="feature-icon">✓</span>
-                                    <span>Advanced AI features</span>
+                                <div>
+                                    <label class="text-sm text-gray-500 dark:text-gray-400">Subject:</label>
+                                    <div class="text-sm font-medium">Application for Software Engineering Internship</div>
                                 </div>
-                                <div class="feature-item">
-                                    <span class="feature-icon">✓</span>
-                                    <span>Priority intelligence</span>
-                                </div>
-                                <div class="feature-item">
-                                    <span class="feature-icon">✓</span>
-                                    <span>3 email accounts</span>
-                                </div>
-                                <div class="feature-item">
-                                    <span class="feature-icon">✓</span>
-                                    <span>Analytics dashboard</span>
-                                </div>
-                                <div class="feature-item">
-                                    <span class="feature-icon">✓</span>
-                                    <span>Priority support</span>
+                                <div class="border-t pt-4">
+                                    <div id="typing-demo" class="text-sm leading-relaxed">
+                                        <span class="typing-content"></span><span class="typing-animation"></span>
+                                    </div>
                                 </div>
                             </div>
-                            <a href="signup.html" class="btn btn-primary btn-full">Start Free Trial</a>
                         </div>
                         
-                        <div class="pricing-card">
-                            <div class="pricing-header">
-                                <h3 class="plan-name">Enterprise</h3>
-                                <div class="plan-price">
-                                    <span class="currency">$</span>
-                                    <span class="amount">99</span>
-                                    <span class="period">/month</span>
-                                </div>
-                                <p class="plan-description">For large teams and organizations</p>
-                            </div>
-                            <div class="pricing-features">
-                                <div class="feature-item">
-                                    <span class="feature-icon">✓</span>
-                                    <span>Unlimited emails</span>
-                                </div>
-                                <div class="feature-item">
-                                    <span class="feature-icon">✓</span>
-                                    <span>Custom AI training</span>
-                                </div>
-                                <div class="feature-item">
-                                    <span class="feature-icon">✓</span>
-                                    <span>Team collaboration</span>
-                                </div>
-                                <div class="feature-item">
-                                    <span class="feature-icon">✓</span>
-                                    <span>Unlimited accounts</span>
-                                </div>
-                                <div class="feature-item">
-                                    <span class="feature-icon">✓</span>
-                                    <span>Advanced security</span>
-                                </div>
-                                <div class="feature-item">
-                                    <span class="feature-icon">✓</span>
-                                    <span>24/7 phone support</span>
-                                </div>
-                            </div>
-                            <a href="contact.html" class="btn btn-outline btn-full">Contact Sales</a>
+                        <!-- Floating Elements -->
+                        <div class="absolute -top-4 -right-4 bg-white dark:bg-gray-800 rounded-full p-3 shadow-lg border border-gray-200 dark:border-gray-700">
+                            <i class="fas fa-robot text-primary-500 text-xl"></i>
                         </div>
-                    </div>
-                    <div class="pricing-guarantee">
-                        <div class="guarantee-icon">🛡️</div>
-                        <div class="guarantee-text">
-                            <strong>30-day money-back guarantee</strong>
-                            <span>Try MailMateAI risk-free. Not satisfied? Get a full refund.</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- FAQ Section -->
-            <section id="faq" class="faq-section">
-                <div class="container">
-                    <div class="section-header">
-                        <h2 class="section-title">Frequently Asked Questions</h2>
-                        <p class="section-description">Everything you need to know about MailMateAI</p>
-                    </div>
-                    <div class="faq-grid">
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h3>How does MailMateAI's AI actually work?</h3>
-                                <span class="faq-icon">+</span>
-                            </div>
-                            <div class="faq-answer">
-                                <p>MailMateAI uses advanced natural language processing and machine learning algorithms to analyze email content, sender patterns, and your interaction history. It learns from your behavior to improve categorization and response suggestions over time.</p>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h3>Is my email data secure and private?</h3>
-                                <span class="faq-icon">+</span>
-                            </div>
-                            <div class="faq-answer">
-                                <p>Absolutely. We use bank-level encryption (AES-256) and process data in secure, SOC 2 Type II certified environments. Your emails are never stored permanently, and we're fully GDPR compliant with zero data retention policies.</p>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h3>Which email providers does MailMateAI support?</h3>
-                                <span class="faq-icon">+</span>
-                            </div>
-                            <div class="faq-answer">
-                                <p>MailMateAI works with all major email providers including Gmail, Outlook, Apple Mail, Yahoo Mail, and any IMAP-enabled email service. Setup takes less than 2 minutes with our one-click integration.</p>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h3>Can I customize the AI suggestions?</h3>
-                                <span class="faq-icon">+</span>
-                            </div>
-                            <div class="faq-answer">
-                                <p>Yes! You can train the AI to match your communication style, set custom priorities, create personalized categories, and adjust the tone for different types of recipients. The AI gets smarter as you use it.</p>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h3>What's included in the free trial?</h3>
-                                <span class="faq-icon">+</span>
-                            </div>
-                            <div class="faq-answer">
-                                <p>The 14-day free trial includes full access to all Professional plan features: unlimited AI categorization, response suggestions, priority intelligence, analytics, and priority support. No credit card required.</p>
-                            </div>
-                        </div>
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h3>How quickly will I see results?</h3>
-                                <span class="faq-icon">+</span>
-                            </div>
-                            <div class="faq-answer">
-                                <p>Most users see immediate improvements in email organization. The AI becomes more accurate within 3-5 days of use, and users typically report saving 2-3 hours daily within the first week.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- CTA Section -->
-            <section class="cta-section">
-                <div class="container">
-                    <div class="cta-content">
-                        <h2 class="cta-title">Ready to Transform Your Email Workflow?</h2>
-                        <p class="cta-description">
-                            Join 50,000+ professionals who've already reclaimed their time with MailMateAI. 
-                            Start your free trial today and experience the future of email management.
-                        </p>
-                        <div class="cta-buttons">
-                            <a href="signup.html" class="btn btn-primary btn-large">
-                                Start Your Free Trial
-                                <span class="btn-icon">→</span>
-                            </a>
-                            <div class="cta-note">
-                                <span class="cta-check">✓</span>
-                                14-day free trial • No credit card required • Cancel anytime
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-section">
-                        <div class="footer-brand">
-                            <span class="logo">📧</span>
-                            <span class="brand-name">MailMateAI</span>
-                        </div>
-                        <p class="footer-description">
-                            Transform your email workflow with AI-powered intelligence. 
-                            Save time, stay organized, never miss important messages.
-                        </p>
-                        <div class="social-links">
-                            <a href="https://twitter.com/MailMateAI" class="social-link" aria-label="Twitter">𝕏</a>
-                            <a href="https://linkedin.com/company/MailMateAI" class="social-link" aria-label="LinkedIn">in</a>
-                            <a href="https://facebook.com/MailMateAI" class="social-link" aria-label="Facebook">f</a>
-                        </div>
-                    </div>
-                    <div class="footer-section">
-                        <h4 class="footer-title">Product</h4>
-                        <ul class="footer-links">
-                            <li><a href="#features">Features</a></li>
-                            <li><a href="#pricing">Pricing</a></li>
-                            <li><a href="integrations.html">Integrations</a></li>
-                            <li><a href="security.html">Security</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-section">
-                        <h4 class="footer-title">Company</h4>
-                        <ul class="footer-links">
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="blog.html">Blog</a></li>
-                            <li><a href="careers.html">Careers</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-section">
-                        <h4 class="footer-title">Support</h4>
-                        <ul class="footer-links">
-                            <li><a href="help.html">Help Center</a></li>
-                            <li><a href="documentation.html">Documentation</a></li>
-                            <li><a href="status.html">System Status</a></li>
-                            <li><a href="mailto:support@mailmateai.com">Contact Support</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="footer-bottom">
-                    <div class="footer-legal">
-                        <span>&copy; 2025 MailMateAI. All rights reserved.</span>
-                        <div class="legal-links">
-                            <a href="privacy.html">Privacy Policy</a>
-                            <a href="terms.html">Terms of Service</a>
-                            <a href="cookies.html">Cookie Policy</a>
+                        <div class="absolute -bottom-4 -left-4 bg-gradient-to-r from-green-400 to-blue-500 rounded-full p-3 shadow-lg">
+                            <i class="fas fa-check text-white text-xl"></i>
                         </div>
                     </div>
                 </div>
             </div>
-        </footer>
+        </div>
+    </section>
 
-        <script>
-            // Simple FAQ toggle functionality
-            document.querySelectorAll('.faq-question').forEach(question => {
-                question.addEventListener('click', () => {
-                    const faqItem = question.parentElement;
-                    const isActive = faqItem.classList.contains('active');
+    <!-- How it Works Section -->
+    <section id="how-it-works" class="py-20 bg-white dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">How it Works</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    From stressed to impressed in 3 simple steps
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center card-hover bg-gray-50 dark:bg-gray-800 rounded-2xl p-8">
+                        <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-edit text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-4">1. Describe Your Need</h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Tell us what kind of email you need to write and who you're writing to.
+                        </p>
+                    </div>
                     
-                    // Close all FAQ items
-                    document.querySelectorAll('.faq-item').forEach(item => {
-                        item.classList.remove('active');
-                    });
+                    <div class="text-center card-hover bg-gray-50 dark:bg-gray-800 rounded-2xl p-8">
+                        <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-magic text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-4">2. AI Crafts Perfect Email</h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Our AI analyzes your request and generates a professional email in seconds.
+                        </p>
+                    </div>
                     
-                    // Open clicked item if it wasn't active
-                    if (!isActive) {
-                        faqItem.classList.add('active');
-                    }
-                });
-            });
+                    <div class="text-center card-hover bg-gray-50 dark:bg-gray-800 rounded-2xl p-8">
+                        <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-paper-plane text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-4">3. Copy & Send</h3>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Review, copy to clipboard, and send your perfectly crafted email.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            // Mobile navigation toggle
-            document.querySelector('.nav-toggle').addEventListener('click', () => {
-                document.querySelector('.nav-menu').classList.toggle('active');
-            });
-        </script>
-    </body>
+    <!-- Use Cases Section -->
+    <section id="use-cases" class="py-20 bg-gray-50 dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Perfect for Every Situation</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    Whether you're applying for internships or following up on interviews, we've got you covered
+                </p>
+            </div>
+            
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg card-hover border border-gray-200 dark:border-gray-700">
+                        <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-briefcase text-blue-600 dark:text-blue-400"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">Internships</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Apply for internships with confidence and professionalism</p>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg card-hover border border-gray-200 dark:border-gray-700">
+                        <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-graduation-cap text-purple-600 dark:text-purple-400"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">Professors</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Reach out to professors for research, recommendations, or questions</p>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg card-hover border border-gray-200 dark:border-gray-700">
+                        <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-user-tie text-green-600 dark:text-green-400"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">Job Applications</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Stand out in job applications with compelling emails</p>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg card-hover border border-gray-200 dark:border-gray-700">
+                        <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-reply text-orange-600 dark:text-orange-400"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">Follow-ups</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Follow up professionally without seeming pushy</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-white dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">What Students Say</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300">Join thousands of students who've landed their dream opportunities</p>
+            </div>
+            
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 card-hover">
+                        <div class="flex items-center mb-4">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b5bc?w=50&h=50&fit=crop&crop=face" alt="Sarah" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h4 class="font-semibold">Sarah Chen</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">CS Student, Stanford</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">"Got my Google internship thanks to MailMate AI! The emails were so professional, I felt confident hitting send."</p>
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 card-hover">
+                        <div class="flex items-center mb-4">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop&crop=face" alt="Marcus" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h4 class="font-semibold">Marcus Johnson</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Business Student, NYU</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">"No more stressing over how to reach out to professors. MailMate AI makes every email sound perfect and respectful."</p>
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 card-hover">
+                        <div class="flex items-center mb-4">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&h=50&fit=crop&crop=face" alt="Priya" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h4 class="font-semibold">Priya Patel</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Engineering Student, MIT</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">"Landed 3 interviews in one week! The follow-up emails generated by MailMate AI are absolutely game-changing."</p>
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 bg-gray-50 dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Simple, Student-Friendly Pricing</h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300">Start free, upgrade when you're ready</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Free Plan -->
+                    <div class="bg-white dark:bg-gray-900 rounded-2xl p-8 border-2 border-gray-200 dark:border-gray-700 card-hover">
+                        <h3 class="text-xl font-bold mb-2">Free</h3>
+                        <div class="text-3xl font-bold mb-4">₹0<span class="text-sm font-normal text-gray-500">/month</span></div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> 5 emails per day</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Basic templates</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Standard tone options</li>
+                            <li class="flex items-center"><i class="fas fa-times text-red-500 mr-2"></i> Advanced AI features</li>
+                        </ul>
+                        <a href="generator.html" class="w-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 py-3 rounded-full font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors text-center block">
+                            Get Started
+                        </a>
+                    </div>
+                    
+                    <!-- Student Plan -->
+                    <div class="bg-white dark:bg-gray-900 rounded-2xl p-8 border-2 border-primary-500 card-hover relative">
+                        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-primary-500 text-white px-4 py-1 rounded-full text-sm font-medium">
+                            Most Popular
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Student</h3>
+                        <div class="text-3xl font-bold mb-4">₹199<span class="text-sm font-normal text-gray-500">/month</span></div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Unlimited emails</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> All tone controls</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Priority AI processing</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Email templates</li>
+                        </ul>
+                        <a href="#" class="w-full bg-primary-500 text-white py-3 rounded-full font-semibold hover:bg-primary-600 transition-colors text-center block">
+                            Choose Student
+                        </a>
+                    </div>
+                    
+                    <!-- Pro Plan -->
+                    <div class="bg-white dark:bg-gray-900 rounded-2xl p-8 border-2 border-gray-200 dark:border-gray-700 card-hover">
+                        <h3 class="text-xl font-bold mb-2">Pro</h3>
+                        <div class="text-3xl font-bold mb-4">₹399<span class="text-sm font-normal text-gray-500">/month</span></div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Everything in Student</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Email scheduling</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Advanced templates</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Priority support</li>
+                        </ul>
+                        <a href="#" class="w-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 py-3 rounded-full font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors text-center block">
+                            Choose Pro
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 bg-white dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Frequently Asked Questions</h2>
+            </div>
+            
+            <div class="max-w-3xl mx-auto">
+                <div class="space-y-4">
+                    <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 faq-item">
+                        <button class="w-full text-left flex justify-between items-center faq-question">
+                            <span class="font-semibold">How does MailMate AI generate emails?</span>
+                            <i class="fas fa-chevron-down transition-transform"></i>
+                        </button>
+                        <div class="mt-4 text-gray-600 dark:text-gray-300 faq-answer hidden">
+                            MailMate AI uses advanced language models (OpenAI, Claude, Gemini) to understand your context and generate professional, well-structured emails that match your specific needs and tone preferences.
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 faq-item">
+                        <button class="w-full text-left flex justify-between items-center faq-question">
+                            <span class="font-semibold">Is my data secure and private?</span>
+                            <i class="fas fa-chevron-down transition-transform"></i>
+                        </button>
+                        <div class="mt-4 text-gray-600 dark:text-gray-300 faq-answer hidden">
+                            Absolutely! We take privacy seriously. Your email content is processed securely and never stored permanently. We follow industry-standard encryption and data protection practices.
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 faq-item">
+                        <button class="w-full text-left flex justify-between items-center faq-question">
+                            <span class="font-semibold">Can I edit the generated emails?</span>
+                            <i class="fas fa-chevron-down transition-transform"></i>
+                        </button>
+                        <div class="mt-4 text-gray-600 dark:text-gray-300 faq-answer hidden">
+                            Of course! Every generated email can be edited before you copy or send it. You can also regenerate emails with different tones or approaches.
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 faq-item">
+                        <button class="w-full text-left flex justify-between items-center faq-question">
+                            <span class="font-semibold">What if I need more than 5 emails per day on the free plan?</span>
+                            <i class="fas fa-chevron-down transition-transform"></i>
+                        </button>
+                        <div class="mt-4 text-gray-600 dark:text-gray-300 faq-answer hidden">
+                            You can upgrade to our Student plan (₹199/month) for unlimited emails, or wait until the next day for your free quota to reset. The Student plan also includes better AI models and more tone options.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 gradient-bg">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+                Ready to Write Better Emails?
+            </h2>
+            <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+                Join thousands of students who've transformed their email game with MailMate AI
+            </p>
+            <a href="generator.html" class="bg-white text-primary-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transform hover:scale-105 transition-all duration-200 shadow-lg inline-flex items-center">
+                <i class="fas fa-rocket mr-2"></i>Start Writing Now - It's Free!
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 dark:bg-black text-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-envelope text-white text-sm"></i>
+                        </div>
+                        <span class="text-xl font-bold">MailMate AI</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        AI-powered email writing assistant for students and young professionals.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">Product</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="generator.html" class="hover:text-white transition-colors">Email Generator</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Templates</a></li>
+                        <li><a href="#pricing" class="hover:text-white transition-colors">Pricing</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">API</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">Resources</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Email Writing Guide</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Student Resources</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">Company</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">About</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 MailMate AI. All rights reserved. Made with ❤️ for students.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
 </html>
